@@ -1,0 +1,243 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#define Decalque 5.00;
+#define Pulseira 5.00;
+#define Buttons 15.00;
+#define Caneca 20.00;
+#define Bag 40.00;
+#define Tenis 50.00;
+#define Camisa_P 40.00;
+#define Camisa_M 50.00;
+#define Camisa_G 60.00;
+#define Bone 60.00;
+#define Casaco 80.00;
+#define Moletom 90.00;
+#define Mochila 120.00;
+#define Headphone 130.00;
+
+int getCep();
+
+void exibeItens();
+void exibeCarrinho(int car[], int n);
+void getPagamento();
+float getPreco(int car[], int n);
+
+int main(){
+    char nome[30], opc = 's';
+    int cep[8],qtd = 0, produto, carrinho[20], i = 0;
+    float preco;
+
+    printf("---------Loja------------\n");
+    printf("Digite seu nome: ");
+    fgets(nome, 30, stdin);
+    printf("%s", nome);
+
+    //cep //falta implementar o cep
+
+    system("clear"); //equivale ao cls no linux
+
+    printf("--------Loja-------------\n");
+    printf("Bem vindo, %s\n", nome);
+    exibeItens(); //função que exibe os itens
+    printf("\n");
+   
+        if(qtd<=20){ //limita a quantidade de itens até 20
+            while(opc == 's'){ //para saber se o usuário quer comprar ou n
+        printf("Digite o valor correspondente ao produto para por no carrinho: ");
+        scanf("%d", &produto); //pega o produto
+        getchar();
+        qtd++;
+        carrinho[i] = produto; //add no carrinho
+        i++;
+    escolha:
+        printf("Deseja adicionar mais algum produto ao carrinho? [S/N]: ");
+        scanf("%c", &opc); // pega a opção pra saber se ele deseja comprar dnv ou n
+        opc = tolower(opc);
+
+            }
+        
+        }
+      
+
+    if (opc == 'n'){ //caso ele n queira comprar mais, vem pra isso if, mas ainda falta corrigir
+        printf("OK!");
+    }
+
+       /* printf("Opção inválida!");
+        goto escolha; */
+    preco = getPreco(carrinho, 20); //pega o preço, n printei na tela ainda
+    getchar();
+    printf("\n\n\n");
+    getPagamento(); //pega a forma de pagamento
+
+      
+ printf("\n\n\n\n");
+ exibeCarrinho(carrinho, 20); // exibe o carrinho
+
+ /*nota: Essa ainda não é a organizão final, estou implementando as funções
+ para saber a melhor forma de organizar */
+
+    return 0;
+}
+
+
+void exibeItens(){
+
+    printf("-------Catálogo--------\n");
+  
+    printf("1 ---- Dequalque -------R$ 5,00\n");
+    printf("2 ---- Pulseira --------R$ 5,00\n");
+    printf("3 ---- Buttons ---------R$ 15,00\n");
+    printf("4 ---- Caneca ----------R$ 20,00\n");
+    printf("5 ---- Bag -------------R$ 40,00\n");
+    printf("6 ---- Tênis -----------R$ 50,00\n");
+    printf("7 ---- Camisa P --------R$ 40,00\n");
+    printf("8 ---- Camisa M --------R$ 50,00\n");
+    printf("9 ---- Camisa G --------R$ 60,00\n");
+    printf("10 --- Boné ------------R$ 60,00\n");
+    printf("11 --- Casaco ----------R$ 80,00\n");
+    printf("12 --- Moletom ---------R$ 90.00\n");
+    printf("13 --- Mochila ---------R$ 120,00\n");
+    printf("14 --- HeadPhone -------R$ 130,00\n");
+    printf("Digite o número do produto correspontente para adicionar ao carrinho.\n");
+
+}
+
+void exibeCarrinho(int car[], int n){
+    int i;
+    
+    for (i = 0; i<20; i++){
+        if (car[i] == 1){
+            printf("Dequalque\n");
+        }
+        if (car[i] == 2){
+            printf("Pulseira\n");
+        }
+        if (car[i] == 3){
+            printf("Buttons\n");
+        }
+        if (car[i] == 4){
+            printf("Caneca\n");
+        }
+        if (car[i] == 5){
+            printf("Bag\n");
+        }
+        if (car[i] == 6){
+            printf("Tênis\n");
+        }
+        if (car[i] == 7){
+            printf("Camisa P\n");
+        }
+        if (car[i] == 8){
+            printf("Camisa M\n");
+        }
+        if (car[i] == 9){
+            printf("Camisa G\n");
+        }
+        if (car[i] == 10){
+            printf("Boné\n");
+        }
+        if (car[i] == 11){
+            printf("Casaco\n");
+        }
+        if (car[i] == 12){
+            printf("Moletom\n");
+        }
+        if (car[i] == 13){
+            printf("Mochila\n");
+        }
+        if (car[i] == 14){
+            printf("Heatphone\n");
+        }
+    
+    }
+}
+
+void getPagamento(){
+    char pagamento;
+
+    printf("Escola a forma de pagamento:\n[C] - Cartão de Crédito.\n[B] - Boleto\n");
+    scanf("%c", &pagamento);
+    pagamento = tolower(pagamento);
+
+    if(pagamento == 'b'){
+        printf("\nPagamento por boleto!\n");
+    }
+
+    else if(pagamento == 'c'){
+        printf("\nPagamento por cartão!\n");
+    }
+
+    else {
+        printf("Forma de pagamento inválido!\n");
+            getPagamento();
+        
+    }
+}
+
+float getPreco(int car[], int n){
+    int i;
+    float val;
+
+    for (i = 0; i < 20; i++){
+        if(car[i] == 1){
+            val += Decalque;
+        }
+          if(car[i] == 2){
+            val += Pulseira;
+        }
+          if(car[i] == 3){
+            val += Buttons;
+        }
+
+          if(car[i] == 4){
+            val += Caneca;
+        }
+
+          if(car[i] == 5){
+            val += Bag;
+        }
+
+          if(car[i] == 6 ){
+            val += Tenis;
+        }
+
+          if(car[i] == 7){
+            val += Camisa_P;
+        }
+
+          if(car[i] == 8){
+            val += Camisa_M;
+        }
+
+          if(car[i] == 9){
+            val += Camisa_G;
+        }
+
+          if(car[i] == 10){
+            val += Bone;
+        }
+          if(car[i] == 11){
+            val += Casaco;
+        }
+
+          if(car[i] == 1){
+            val += Decalque;
+        }
+
+          if(car[i] == 12){
+            val += Moletom;
+        }
+          if(car[i] == 13){
+            val += Mochila;
+        }
+          if(car[i] == 14){
+            val += Headphone;
+        }
+
+    }
+
+    return val;
+}
